@@ -17,46 +17,8 @@ import numpy as np
 import pdb
 from src.utils import view_bar
 from src.utils import Timer
-from src.utils import norm_cosin_distance
+from src.dataset import Dataset
 import copy
-
-class Dataset(object):
-    def __init__(self, dataset):
-        self.data_path = os.path.join(cfg.DATA_DIR, dataset, 'image')
-        self.dataset = dataset
-        self.features = {}
-        self.image_id = self.image_id()
-
-    def get_image_list(self):
-        #test_file = os.path.join(cfg.DATA_DIR, )
-        image_iters = os.listdir(os.path.join(self.data_path))
-
-        return image_iters
-    
-    def image_id(self):
-        pkl_file = open(os.path.join(cfg.DATA_DIR, self.dataset, 'image_id.pkl'), 'rb')
-        image_id = cPickle.load(pkl_file)
-
-        return image_id
-    
-    def get_image_id(self, image_name):
-        if image_name in self.image_id.keys(): 
-            return self.image_id[image_name]
-        else:
-            print('Image: {}'.format(image_name))
-            return None
-
-    def add_feature(self, name, feature, id):
-        if name not in self.features.keys():
-            self.features[name] = {}
-            self.features[name]['feature'] = feature 
-            self.features[name]['id'] = id
-    
-    def store_feature(self, savepath):
-        with open(savepath, 'wb') as f:
-            cPickle.dump(self.features, f, cPickle.HIGHEST_PROTOCOL)
-        print('Dump features Done!')
-        print('Path: {}'.format(savepath))
 
 if __name__ == '__main__':
     dataset = cfg.DATASET
@@ -74,9 +36,7 @@ if __name__ == '__main__':
 
     image_iters = dataset.get_image_list()
     
-    #image_iters = image_iters[0:100]
-
-    image_iters = ['0267313', '0034106']
+    image_iters = image_iters[0:100]
 
     for idx, image_iter in enumerate(image_iters):
         image_name = image_iter.split('.')[0]
@@ -100,9 +60,10 @@ if __name__ == '__main__':
             #    print('{} image have done!'.format(idx))
             #print image_name
 
-    saveroot = os.path.join(cfg.DATA_DIR, cfg.FEATURE_DIR, cfg.MODEL)
+    saveroot = os.path.join(cfg.DATA_DIR, cfg.FEATURE_DIR, 
+                            cfg.DATASET, cfg.MODEL, cfg.DISTANCE_METRIC)
     if not os.path.exists(saveroot):
         os.makedirs(saveroot)
     savepath = os.path.join(saveroot, cfg.SAVE_NAME)
-    pdb.set_trace()
+    #pdb.set_trace()
     dataset.store_feature(savepath)

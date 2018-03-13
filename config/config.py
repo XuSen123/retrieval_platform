@@ -26,6 +26,7 @@ __C.RESULT_DIR = osp.join(__C.ROOT_DIR, 'results')
 
 __C.PIXEL_MEANS = np.array([[[104.0, 117.0, 123.0]]])
 
+
 # Setting distance metric e.g: 'L2' or 'cosin'
 __C.DISTANCE_METRIC = 'cosin'
 
@@ -45,16 +46,16 @@ __C.IMAGE_HEIGHT = 224
 __C.GPU_ID = 0
 
 # Setting save_name
-__C.SAVE_NAME = 'GSTE_features.pkl'
+__C.SAVE_NAME = 'softmax_features.pkl'
 
 # Setting data
 __C.DATASET = 'VehicleID_V1.0'
 
 # Setting model
-__C.MODEL = 'Peking'
+__C.MODEL = 'softmax'
 
 # Setting caffe models
-__C.CAFFEMODEL = 'resnet50_peking.caffemodel'
+__C.CAFFEMODEL = 'carReID_softmax.caffemodel'
 
 # Setting prototxt
 __C.PROTOTXT = 'deploy.prototxt'
