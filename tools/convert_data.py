@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     image_iters = dataset.get_image_list()
     
-    image_iters = image_iters[0:100]
+    #image_iters = image_iters[0:100]
 
     for idx, image_iter in enumerate(image_iters):
         image_name = image_iter.split('.')[0]
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             #print image_name
 
     saveroot = os.path.join(cfg.DATA_DIR, cfg.FEATURE_DIR, 
-                            cfg.DATASET, cfg.MODEL, cfg.DISTANCE_METRIC)
+                            cfg.DATASET, cfg.MODEL)
     if not os.path.exists(saveroot):
         os.makedirs(saveroot)
     savepath = os.path.join(saveroot, cfg.SAVE_NAME)

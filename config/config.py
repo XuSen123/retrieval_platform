@@ -18,6 +18,8 @@ __C.ROOT_DIR = osp.abspath(osp.join(osp.dirname(__file__), '..'))
 
 __C.DATA_DIR = osp.join(__C.ROOT_DIR, 'data')
 
+__C.VISUALIZE_DIR = osp.join(__C.ROOT_DIR, 'visualize')
+
 __C.FEATURE_DIR = osp.join(__C.ROOT_DIR, 'feature')
 
 __C.MODEL_DIR = osp.join(__C.ROOT_DIR, 'models')
@@ -33,8 +35,29 @@ __C.DISTANCE_METRIC = 'cosin'
 # Setting image process
 __C.RESIZE = True
 
+# Setting theta 1
+__C.THETA1 = 1.0
+
+# Setting theta 2
+__C.THETA2 = 0.1
+
+# Setting visualize
+__C.VISUALIZE = True
+
 # Setting top-K list
 __C.TOP_K = 100
+
+# Setting threshold
+__C.THRESHOLD = 0.7
+
+# Setting visualize top_k list
+__C.VISUALIZE_TOP_K = 30
+
+# Setting rerank top_k list
+__C.RANK_TOP_K = 30
+
+# Setting visualize rows
+__C.VISUALIZE_COLS = 10
 
 # Setting image width
 __C.IMAGE_WIDTH = 224
@@ -61,4 +84,4 @@ __C.CAFFEMODEL = 'carReID_softmax.caffemodel'
 __C.PROTOTXT = 'deploy.prototxt'
 
 # Setting feature name
-__C.FEATURE_NAME = ['global_pool']
+__C.FEATURE_NAME = ['fc7']

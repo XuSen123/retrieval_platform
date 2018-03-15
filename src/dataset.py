@@ -3,6 +3,7 @@
 import os
 from config.config import cfg
 import cPickle
+import pdb
 
 class Dataset(object):
     def __init__(self, dataset):
@@ -10,6 +11,7 @@ class Dataset(object):
         self.dataset = dataset
         self.features = {}
         self.image_id = self.image_id()
+        self.id_image = self.id_image()
 
     def get_image_list(self):
         image_iters = os.listdir(os.path.join(self.data_path))
@@ -29,6 +31,19 @@ class Dataset(object):
             print('Image: {}'.format(image_name))
             return None
     
+    def id_image(self):
+        pkl_file = open(os.path.join(cfg.DATA_DIR, self.dataset, 'id_image.pkl'), 'rb')
+        id_image = cPickle.load(pkl_file)
+
+        return id_image
+    
+    def get_id_length(self, image_id):
+        if image_id in self.id_image.keys():
+            return len(self.id_image[image_id])
+        else:
+            print('Image: {}'.format(image_id))
+            return None
+
     def get_retrieval_list(self):
         retrieval_file_path = os.path.join(cfg.DATA_DIR, cfg.DATASET, \
                                           'train_test_split', 'test_list_800.txt')
